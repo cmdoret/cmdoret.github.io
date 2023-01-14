@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <script defer src="https://cmdoret.net/abridge-bundle.min.js?h=6d8ee93c1f7ab452f7c0c85d31d6027e082efb306e28897334fb0a4644e72db8" integrity="sha384-6VHFI8GnTAmQwA1Z5Y9ispGPiTrQTlQGo6AF3yi9uEvLQOoi6dpMr0fUg/JDtMko"></script>
+  <script defer src="https://cmdoret.net/abridge-bundle.min.js?h=a83d958fa3ec4ab2d2298e23ee4fec22ec418bdd0ab3ca05ad5eee08f056489e" integrity="sha384-+VWyL97Y4SviAwLpwz4ZNJ4kRH0iEjOzSdAYFXzUyMUB/h0UBtHr1wX2I3OZQvsb"></script>
   <meta name="base" content="https://cmdoret.net" />
   <link rel="alternate" type="application/atom+xml" title="Atom/RSS Feed" href="https://cmdoret.net/atom.xml" />
   <meta name="robots" content="index, follow" />
@@ -71,12 +71,12 @@
 
     <p>Most scientific software is developed by researchers whose main area of expertise is not software engineering, and who may not have much time to dedicate on development. This often results in a tendency to ignore more advanced language features, such as failing to create custom types and instead over-rely on the language's built-in types. </p>
 <p>While it is arguably better to avoid over-engineering to keep the code simple and accessible to a wider audience, using more advanced features can also improve readability and maintainability in larger codebases. In such situations, sticking to the built-ins can result in a code smell known as <em>primitive obsession</em>.</p>
-<p>Fortunately, python provides several features to easily take advantage of custom types and interfaces little overhead. In this post, I'll be showcasing a few modern(ish) python features that can help keep your code readable, and save you time in the long term.</p>
+<p>Fortunately, python provides several features to easily take advantage of custom types and interfaces with little overhead. In this post, I'll be showcasing a few modern(ish) python features that can help keep your code readable, and save you time in the long term.</p>
 <h2 id="the-problem">The problem</h2>
-<p>A few may arise when over-relying on built-ins:</p>
+<p>A few issues may arise when over-relying on built-ins:</p>
 <ul>
-<li>The lack of custom interfaces can force more complex logic or repetitions</li>
-<li>The code becomes harder to read due to the absence of explicitely named fields and methods</li>
+<li>Lack of custom interfaces can force more complex logic or repetitions</li>
+<li>Code becomes harder to read due to the absence of explicitely named fields and methods</li>
 <li>Maintainability suffers: changing a field may require replacing it at multiple places as opposed to a single definition.</li>
 </ul>
 <p>Let's take a look at an example that uses only built-ins organized into nested structures:</p>
@@ -99,7 +99,7 @@
                     <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-constant z-language z-python">True</span>
     <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-constant z-language z-python">False</span>
 </span></code></pre>
-<p>We define a genome as a complex nested structure of built-in types (list, tuple, str, int). Then we write a function which will check whether an input read falls in a gene from a given genome.</p>
+<p>We define a genome as a complex nested structure of built-in types (list, tuple, str, int). Then we write a function which will check whether an input read falls on a gene from a given genome.</p>
 <p>Even with intuitive variable names (<code>gene</code> and not <code>g</code>) it takes a lot of mental effort to understand the nesting, and translate the numeric indices (e.g. <code>gene[1][1]</code>) into their meaning 🪆. This can make the code harder to understand and maintain.</p>
 <h3 id="third-place-medal-type-hints">🥉 Type hints</h3>
 <blockquote>
@@ -218,9 +218,9 @@ First we can define an interval dataclass. The simplest definition we can write 
 
 </span></code></pre>
 <p>Again, placing the mouse over any occurrence of <code>Interval</code> should show the type hints, along with the docstring annotation:</p>
-<table><thead><tr><th><code>(class) Interval(chrom: str, start: int, end: int, sign: Literal['+', '-'] \| None = None)</code></th></tr></thead><tbody>
-<tr><td><code>An optionally stranded genomic interval.</code></td></tr>
-</tbody></table>
+<pre class="z-code"><code><span class="z-text z-plain">`(class) Interval(chrom: str, start: int, end: int, sign: Literal[&#39;+&#39;, &#39;-&#39;] | None = None)`
+`An optionally stranded genomic interval.`
+</span></code></pre>
 <p>Now, let's pretend that we want the ability to sort intervals (i.e. define <code>interval1 &gt; interval2</code>). With a traditional class, this would require writing dunder methods <code>__lt__</code> and/or <code>__gt__</code> to define the behaviours of <code>&lt;</code> and <code>&gt;</code> operators.</p>
 <p>With dataclasses, most dunder methods (<code>__init__</code>, <code>__repr__</code>, <code>__eq__</code>, ...) are automatically generated. Their behaviour can be customized with arguments to the <code>@dataclass</code> decorator and the <code>field()</code> helper function.</p>
 <p>For example, below we use <code>order=True</code> to say that instances of <code>Interval</code> can be ordered. This will automatically define dunder methods <code>__lt__</code> and <code>__gt__</code>. We then use <code>field(compare=True)</code> to specify which fields should be used in the comparison.</p>
@@ -510,6 +510,26 @@ First we can define an interval dataclass. The simplest definition we can write 
 
 <p><b><a href="#">Back to top</a></b></p>
     </article>
+    <div class="toc" aria-hidden="true">
+      <div class="toc-sticky">
+        <h3>Index</h3>
+        <div class="toc-item">
+          <a class="subtext" href="https://cmdoret.net/primitive-obsession/#the-problem">The problem</a>
+        </div>
+        <div class="toc-item-child">
+          <a class="subtext" href="https://cmdoret.net/primitive-obsession/#third-place-medal-type-hints"><small>- 🥉 Type hints</small></a>
+        </div>
+        <div class="toc-item-child">
+          <a class="subtext" href="https://cmdoret.net/primitive-obsession/#second-place-medal-typed-named-tuples"><small>- 🥈 Typed Named tuples</small></a>
+        </div>
+        <div class="toc-item-child">
+          <a class="subtext" href="https://cmdoret.net/primitive-obsession/#first-place-medal-data-classes"><small>- 🥇 Data classes</small></a>
+        </div>
+        <div class="toc-item-child">
+          <a class="subtext" href="https://cmdoret.net/primitive-obsession/#cherries-pydantic"><small>- 🍒 pydantic</small></a>
+        </div>
+      </div>
+    </div>
   </main>
   <footer>
     <hr />

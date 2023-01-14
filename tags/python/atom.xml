@@ -15,12 +15,12 @@
 		<id>https://cmdoret.net/primitive-obsession/</id>
 		<content type="html">&lt;p&gt;Most scientific software is developed by researchers whose main area of expertise is not software engineering, and who may not have much time to dedicate on development. This often results in a tendency to ignore more advanced language features, such as failing to create custom types and instead over-rely on the language&#x27;s built-in types. &lt;&#x2F;p&gt;
 &lt;p&gt;While it is arguably better to avoid over-engineering to keep the code simple and accessible to a wider audience, using more advanced features can also improve readability and maintainability in larger codebases. In such situations, sticking to the built-ins can result in a code smell known as &lt;em&gt;primitive obsession&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;Fortunately, python provides several features to easily take advantage of custom types and interfaces little overhead. In this post, I&#x27;ll be showcasing a few modern(ish) python features that can help keep your code readable, and save you time in the long term.&lt;&#x2F;p&gt;
+&lt;p&gt;Fortunately, python provides several features to easily take advantage of custom types and interfaces with little overhead. In this post, I&#x27;ll be showcasing a few modern(ish) python features that can help keep your code readable, and save you time in the long term.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;&#x2F;h2&gt;
-&lt;p&gt;A few may arise when over-relying on built-ins:&lt;&#x2F;p&gt;
+&lt;p&gt;A few issues may arise when over-relying on built-ins:&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;The lack of custom interfaces can force more complex logic or repetitions&lt;&#x2F;li&gt;
-&lt;li&gt;The code becomes harder to read due to the absence of explicitely named fields and methods&lt;&#x2F;li&gt;
+&lt;li&gt;Lack of custom interfaces can force more complex logic or repetitions&lt;&#x2F;li&gt;
+&lt;li&gt;Code becomes harder to read due to the absence of explicitely named fields and methods&lt;&#x2F;li&gt;
 &lt;li&gt;Maintainability suffers: changing a field may require replacing it at multiple places as opposed to a single definition.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Let&#x27;s take a look at an example that uses only built-ins organized into nested structures:&lt;&#x2F;p&gt;
@@ -43,7 +43,7 @@
                     &lt;span class=&quot;z-keyword z-control z-flow z-return z-python&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-python&quot;&gt;True&lt;&#x2F;span&gt;
     &lt;span class=&quot;z-keyword z-control z-flow z-return z-python&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-python&quot;&gt;False&lt;&#x2F;span&gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;We define a genome as a complex nested structure of built-in types (list, tuple, str, int). Then we write a function which will check whether an input read falls in a gene from a given genome.&lt;&#x2F;p&gt;
+&lt;p&gt;We define a genome as a complex nested structure of built-in types (list, tuple, str, int). Then we write a function which will check whether an input read falls on a gene from a given genome.&lt;&#x2F;p&gt;
 &lt;p&gt;Even with intuitive variable names (&lt;code&gt;gene&lt;&#x2F;code&gt; and not &lt;code&gt;g&lt;&#x2F;code&gt;) it takes a lot of mental effort to understand the nesting, and translate the numeric indices (e.g. &lt;code&gt;gene[1][1]&lt;&#x2F;code&gt;) into their meaning 🪆. This can make the code harder to understand and maintain.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;third-place-medal-type-hints&quot;&gt;🥉 Type hints&lt;&#x2F;h3&gt;
 &lt;blockquote&gt;
@@ -162,9 +162,9 @@ First we can define an interval dataclass. The simplest definition we can write 
 
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Again, placing the mouse over any occurrence of &lt;code&gt;Interval&lt;&#x2F;code&gt; should show the type hints, along with the docstring annotation:&lt;&#x2F;p&gt;
-&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;&lt;code&gt;(class) Interval(chrom: str, start: int, end: int, sign: Literal[&#x27;+&#x27;, &#x27;-&#x27;] \| None = None)&lt;&#x2F;code&gt;&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;&lt;code&gt;An optionally stranded genomic interval.&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
-&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;`(class) Interval(chrom: str, start: int, end: int, sign: Literal[&amp;#39;+&amp;#39;, &amp;#39;-&amp;#39;] | None = None)`
+`An optionally stranded genomic interval.`
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;Now, let&#x27;s pretend that we want the ability to sort intervals (i.e. define &lt;code&gt;interval1 &amp;gt; interval2&lt;&#x2F;code&gt;). With a traditional class, this would require writing dunder methods &lt;code&gt;__lt__&lt;&#x2F;code&gt; and&#x2F;or &lt;code&gt;__gt__&lt;&#x2F;code&gt; to define the behaviours of &lt;code&gt;&amp;lt;&lt;&#x2F;code&gt; and &lt;code&gt;&amp;gt;&lt;&#x2F;code&gt; operators.&lt;&#x2F;p&gt;
 &lt;p&gt;With dataclasses, most dunder methods (&lt;code&gt;__init__&lt;&#x2F;code&gt;, &lt;code&gt;__repr__&lt;&#x2F;code&gt;, &lt;code&gt;__eq__&lt;&#x2F;code&gt;, ...) are automatically generated. Their behaviour can be customized with arguments to the &lt;code&gt;@dataclass&lt;&#x2F;code&gt; decorator and the &lt;code&gt;field()&lt;&#x2F;code&gt; helper function.&lt;&#x2F;p&gt;
 &lt;p&gt;For example, below we use &lt;code&gt;order=True&lt;&#x2F;code&gt; to say that instances of &lt;code&gt;Interval&lt;&#x2F;code&gt; can be ordered. This will automatically define dunder methods &lt;code&gt;__lt__&lt;&#x2F;code&gt; and &lt;code&gt;__gt__&lt;&#x2F;code&gt;. We then use &lt;code&gt;field(compare=True)&lt;&#x2F;code&gt; to specify which fields should be used in the comparison.&lt;&#x2F;p&gt;
