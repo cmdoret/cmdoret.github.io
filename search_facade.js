@@ -4,8 +4,8 @@ window.onload = function() {
         if (baseUrl.slice(-1) == "/") {
             baseUrl = baseUrl.slice(0, -1);
         }
-        var sha256='aafa47f0ea32168c496baac982bb6a21ef744eecebf33784103eba4a6583b31a';
-        var sha384='UTuyhEeRPfvt8oXG8QOiUXcdeO2bHLDE9Xp5Ts7BRKa4NBunybYYAmPKfB0q9ltY';
+        var sha256='9d521edc272b0af22a652a02291cf68e897af54f0bb6c76627ec399033cb74cc';
+        var sha384='QgEZeTOYeIAV7BUZ4SRJDr4y8NbfVaCdSB6N70WFq2n8gKZXbTa/+qkTo4UdLBFK';
         var loadSearch = document.createElement('script');
         loadSearch.src = baseUrl + '/search_bundle.min.js?h=' + sha256;
         loadSearch.setAttribute('integrity', 'sha384-' + sha384);
