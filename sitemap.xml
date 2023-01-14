@@ -13,6 +13,9 @@
         <loc>https://cmdoret.net/categories/personal/</loc>
     </url>
     <url>
+        <loc>https://cmdoret.net/categories/programming/</loc>
+    </url>
+    <url>
         <loc>https://cmdoret.net/cv/</loc>
     </url>
     <url>
@@ -20,6 +23,10 @@
     </url>
     <url>
         <loc>https://cmdoret.net/posts/</loc>
+    </url>
+    <url>
+        <loc>https://cmdoret.net/posts/primitive-obsession/</loc>
+        <lastmod>2023-01-13</lastmod>
     </url>
     <url>
         <loc>https://cmdoret.net/privacy/</loc>
@@ -35,6 +42,12 @@
     </url>
     <url>
         <loc>https://cmdoret.net/tags/blog/</loc>
+    </url>
+    <url>
+        <loc>https://cmdoret.net/tags/genomics/</loc>
+    </url>
+    <url>
+        <loc>https://cmdoret.net/tags/python/</loc>
     </url>
     <url>
         <loc>https://cmdoret.net/welcome/</loc>
