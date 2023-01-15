@@ -16,7 +16,7 @@
 		<content type="html">&lt;p&gt;Most scientific software is developed by researchers whose main area of expertise is not software engineering, and who may not have much time to dedicate to development. This often results in a tendency to ignore more advanced language features, such as failing to create custom types and instead over-rely on the language&#x27;s built-in types. &lt;&#x2F;p&gt;
 &lt;p&gt;While it is arguably better to avoid over-engineering to keep the code simple and accessible to a wider audience, using more advanced features can also improve readability and maintainability in larger codebases. In such situations, sticking to the built-ins can result in a code smell known as &lt;em&gt;primitive obsession&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Fortunately, python provides several features to easily take advantage of custom types and interfaces with little overhead. In this post, I&#x27;ll be showcasing a few modern(ish) python features that can help keep your code readable, and save you time in the long term.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;the-problem&quot;&gt;🪆 The problem&lt;&#x2F;h2&gt;
 &lt;p&gt;A few issues may arise when over-relying on built-ins to represent complex domain-specific models:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;Lack of custom interfaces can force more complex logic or repetitions&lt;&#x2F;li&gt;
@@ -48,7 +48,7 @@
 &lt;&#x2F;blockquote&gt;
 &lt;p&gt;We define a genome as a complex nested structure of built-in types (list, tuple, str, int). Then we write a function which will check whether an input read falls on a gene from a given genome.&lt;&#x2F;p&gt;
 &lt;p&gt;Even with intuitive variable names (&lt;code&gt;gene&lt;&#x2F;code&gt; and not &lt;code&gt;g&lt;&#x2F;code&gt;) it takes a lot of mental effort to understand the nesting, and translate the numeric indices (e.g. &lt;code&gt;gene[1][1]&lt;&#x2F;code&gt;) into their meaning 🪆. This can make the code harder to understand and maintain.&lt;&#x2F;p&gt;
-&lt;h3 id=&quot;third-place-medal-type-hints&quot;&gt;🥉 Type hints&lt;&#x2F;h3&gt;
+&lt;h2 id=&quot;third-place-medal-type-hints&quot;&gt;🥉 Type hints&lt;&#x2F;h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;TypeAlias was introduced by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;peps.python.org&#x2F;pep-0613&#x2F;&quot;&gt;PEP-613&lt;&#x2F;a&gt; in python 3.10 (2020)&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
@@ -86,7 +86,7 @@
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;If we needed to change some data structures, we would only need to edit the hints in the alias definition.&lt;&#x2F;p&gt;
 &lt;p&gt;Type hints are a great way of documenting code, and they can even be combined with tools like &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.mypy-lang.org&#x2F;&quot;&gt;mypy&lt;&#x2F;a&gt; or &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;microsoft&#x2F;pyright&quot;&gt;pyright&lt;&#x2F;a&gt; to check for errors! In this example, however, the hints themselves are also hard to read because of the heavily nested structures, we need a better solution.&lt;&#x2F;p&gt;
-&lt;h3 id=&quot;second-place-medal-named-tuples&quot;&gt;🥈 Named tuples&lt;&#x2F;h3&gt;
+&lt;h2 id=&quot;second-place-medal-named-tuples&quot;&gt;🥈 Named tuples&lt;&#x2F;h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;NamedTuple was introduced by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;peps.python.org&#x2F;pep-0526&#x2F;&quot;&gt;PEP-526&lt;&#x2F;a&gt; in python 3.6 (2016)&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
@@ -149,7 +149,7 @@
                     &lt;span class=&quot;z-keyword z-control z-flow z-return z-python&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-python&quot;&gt;True&lt;&#x2F;span&gt;
     &lt;span class=&quot;z-keyword z-control z-flow z-return z-python&quot;&gt;return&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-python&quot;&gt;False&lt;&#x2F;span&gt;
 &lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;h3 id=&quot;first-place-medal-data-classes&quot;&gt;🥇 Data classes&lt;&#x2F;h3&gt;
+&lt;h2 id=&quot;first-place-medal-data-classes&quot;&gt;🥇 Data classes&lt;&#x2F;h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;dataclass was introduced by &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;peps.python.org&#x2F;pep-0557&#x2F;&quot;&gt;PEP-557&lt;&#x2F;a&gt; in python 3.7 (2017)&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
@@ -279,7 +279,7 @@ First, we can define an interval dataclass. The simplest definition we can write
 &lt;&#x2F;details&gt;
 &lt;p&gt;In summary, the complicated logic has been moved into the structure definitions, and for the better: each function is more modular (easier to read), and we can reuse them anytime we need new functions, instead of rewriting similar logic.&lt;&#x2F;p&gt;
 &lt;p&gt;Using these features introduces the overhead of defining data structures. In this example, named tuples would probably be a good middle ground. For larger projects and algorithms, these definitions and the associated documentation (docstrings and type hints) represent a small cost compared to the long term gain in efficiency and clarity.&lt;&#x2F;p&gt;
-&lt;h3 id=&quot;cherries-pydantic&quot;&gt;🍒 pydantic&lt;&#x2F;h3&gt;
+&lt;h2 id=&quot;cherries-pydantic&quot;&gt;🍒 pydantic&lt;&#x2F;h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;docs.pydantic.dev&#x2F;&quot;&gt;pydantic&lt;&#x2F;a&gt; (1.10.4) compatible with python 3.7-3.11&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
