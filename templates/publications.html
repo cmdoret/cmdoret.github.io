@@ -1,0 +1,54 @@
+{# This Page Shows the Posts Grouped by Year: example.com/posts/ #}
+
+{% extends "base.html" %}
+{%- import 'macros/bibliography.html' as biblio %}
+
+{%- block seo %}
+{{- super() }}
+{%- set title = "Publications" %}
+
+{%- if config.title %}
+{%- set title_addition = title_separator ~ config.title %}
+{%- else %}
+{%- set title_addition = "" %}
+{%- endif %}
+
+{%- set description = config.description %}
+
+{{- macros_head::seo(config=config, title=title, title_addition=title_addition, description=description, is_home=true)
+}}
+{%- endblock seo %}
+
+{%- block content %}
+{%- set section_item = get_section(path="_index.md") %}
+<div>
+  {% set data = load_data(path="publications.bib", format="bibtex") %}
+  <h2>📚 Papers</h2>
+  <ul>
+    {% for pub in data.bibliographies %}
+    <div>
+      {% if pub.entry_type == "article" %}
+      <li> {{ biblio::print_article(pub=pub) }} </li>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </ul>
+  <h2>🎓 Thesis</h2>
+  <ul>
+    {% for pub in data.bibliographies %}
+    {% if pub.entry_type == "phdthesis" %}
+    <li>{{ biblio::print_thesis(pub=pub) }}</li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+  <h2>📖 Book chapters</h2>
+  <ul>
+    {% for pub in data.bibliographies %}
+    {% if pub.entry_type == "incollection" %}
+    <li>{{ biblio::print_chapter(pub=pub) }}</li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+
+</div>
+{%- endblock content %}

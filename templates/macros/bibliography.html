@@ -1,0 +1,39 @@
+{%- macro add_links(pub) %}
+{% if pub.tags.file %}
+[<a href={{pub.citation_key}}.pdf>PDF</a>
+{% if pub.tags.file_supp %}
+, <a href={{pub.citation_key}}_supp.pdf>supp</a>
+{% endif %}
+{% if pub.tags.repo %}
+, <a href={{pub.tags.repo}}>repo</a>
+{% endif %}
+{% if pub.tags.data %}
+, <a href={{pub.tags.data}}>data</a>
+{% endif %}
+]
+{% endif %}
+{%- endmacro %}
+
+{%- macro print_article(pub) %}
+{% set tags = pub.tags %}
+<b>{{ tags.title }}</b>
+<p>{{ tags.author }}</p>
+<p><i>{{ tags.journal }}</i>, {{ tags.year }}, doi: <a href=https://doi.org/{{ tags.doi }}>{{ tags.doi }}</a></p>
+{{ self::add_links(pub=pub) }}
+{%- endmacro %}
+
+{%- macro print_thesis(pub) %}
+{% set tags = pub.tags %}
+<b>{{ tags.title }}</b>
+<p>{{ tags.author }}</p>
+<p>tel: <a href={{ tags.url }}>tel-03679023</a></p>
+{{ self::add_links(pub=pub) }}
+{%- endmacro %}
+
+{%- macro print_chapter(pub) %}
+{% set tags = pub.tags %}
+<b>{{ tags.title }}</b>
+<p>{{ tags.author }}</p>
+<p><i>{{ tags.booktitle}}</i>, pages {{ tags.pages }}, {{ tags.year }}</p>
+{{ self::add_links(pub=pub) }}
+{%- endmacro %}

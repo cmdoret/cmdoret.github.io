@@ -1,0 +1,35 @@
+//@import "fonts/Abridge";
+//@import "fonts/Roboto";
+//@import "fonts/Arimo";
+//@import "fonts/Lato";
+//@import "fonts/FiraCode"; // Monospaced
+@import "imports";
+@import "syntax/syntax-abridge-switcher";
+
+:root:not(.light) {
+  --f1: #c5c5c5; // Font Color Primary
+  --f2: #bbb; // Font color Headers
+  --c1: #202020; // Background Color Primary
+  --c2: #333; // Background Color Secondary
+  --c3: #333; // Table Rows, Block quote edge, Borders
+  --c4: #888; // Disabled Buttons, Borders, mark background
+  --a1: #05a; // link color
+  --a2: #07b; // link hover/focus color
+  --a3: #0af; // link h1-h2 hover/focus color
+  --cg: #593; // ins green, success
+  --cr: #e33; // del red, errors
+}
+
+:root.light {
+  --f1: #444; // Font Color Primary
+  --f2: #333; // Font color Headers
+  --c1: #ddd; // Background Color Primary
+  --c2: #eee; // Background Color Secondary
+  --c3: #ddd; // Table Rows, Block quote edge, Borders
+  --c4: #677; // Disabled Buttons, Borders, mark background
+  --a1: #06e; // link color
+  --a2: #09f; // link hover/focus color
+  --a3: #07f; // link h1-h2 hover/focus color
+  --cg: #373; // ins green, success
+  --cr: #d33; // del red, errors
+}
