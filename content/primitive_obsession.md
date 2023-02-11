@@ -12,11 +12,14 @@ toc = true
 keywords = "Programming, Bioinformatics, Genomics, Research, Software, Python, Dataclass, NamedTuple"
 +++
 
+
 Most scientific software is developed by researchers whose main area of expertise is not software engineering, and who may not have much time to dedicate to development. This often results in a tendency to ignore more advanced language features, such as failing to create custom types and instead over-rely on the language's built-in types. 
 
 While it is arguably better to avoid over-engineering to keep the code simple and accessible to a wider audience, using more advanced features can also improve readability and maintainability in larger codebases. In such situations, sticking to the built-ins can result in a code smell known as _primitive obsession_.
 
 Fortunately, python provides several features to easily take advantage of custom types and interfaces with little overhead. In this post, I'll be showcasing a few modern(ish) python features that can help keep your code readable, and save you time in the long term.
+
+> I thank [Fabian Egli](https://fabianegli.ch/en/) for his feedback, which helped [improve](https://github.com/cmdoret/cmdoret.github.io/commit/4b16fe48e1f0ba94b45cd4e253ead2c3abe8e4ae) this post.
 
 ## 🪆 The problem
 
