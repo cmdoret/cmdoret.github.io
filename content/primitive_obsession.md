@@ -41,8 +41,8 @@ def read_in_gene(read, genome):
     for chrom in genome:
         if chrom[0] == read[0]:
             for gene in chrom[2]:
-                starts_in = gene[1][1] <= read[1] < gene[1][2]
-                ends_in = gene[1][1] < read[2] <= gene[1][2]
+                starts_in = gene[1][1] <= read[1] <= gene[1][2]
+                ends_in = gene[1][1] <= read[2] <= gene[1][2]
                 same_sign = gene[1][3] == read[3]
                 if starts_in or ends_in:
                     return True
@@ -51,7 +51,7 @@ def read_in_gene(read, genome):
 
 > The code in this post was tested under python 3.10.4
 
-We define a genome as a complex nested structure of built-in types (list, tuple, str, int). Then we write a function which will check whether an input read falls on a gene from a given genome.
+We define a genome as a complex nested structure of built-in types (list, tuple, str, int). Then we write a function which will check whether an input read falls on a gene from a given genome. All intervals are 0-based and open.
 
 Even with intuitive variable names (`gene` and not `g`) it takes a lot of mental effort to understand the nesting, and translate the numeric indices (e.g. `gene[1][1]`) into their meaning 🪆. This can make the code harder to understand and maintain.
 
@@ -129,7 +129,7 @@ from typing import Literal, NamedTuple, Optional
 
 
 class Interval(NamedTuple):
-    """An optionally stranded genomic interval."""
+    """An optionally stranded, 0-based, open genomic interval."""
 
     chrom: str
     start: int
@@ -166,8 +166,8 @@ def read_in_gene(read: Interval, genome: list[Chrom]) -> bool:
     for chrom in genome:
         if chrom.name == read.chrom:
             for gene in chrom.genes:
-                starts_in = gene.coord.start <= read.start < gene.coord.end
-                ends_in = gene.coord.start < read.end <= gene.coord.end
+                starts_in = gene.coord.start <= read.start <= gene.coord.end
+                ends_in = gene.coord.start <= read.end <= gene.coord.end
                 same_sign = gene.coord.sign == read.sign
                 if (starts_in or ends_in) and same_sign:
                     return True
@@ -181,13 +181,12 @@ Dataclasses offer the flexibility of python classes with minimal administrative 
 First, we can define an interval dataclass. The simplest definition we can write looks almost identical to the previous `NamedTuple` subclass:
 
 ```python
-from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal, Optional
 
 @dataclass
 class Interval:
-    """An optionally stranded genomic interval."""
+    """An optionally stranded, 0-based, open genomic interval."""
 
     chrom: str
     start: int
@@ -211,7 +210,7 @@ For example, below, we use `order=True` to say that instances of `Interval` can 
 ```python
 @dataclass(order=True)
 class Interval:
-    """A stranded genomic interval."""
+    """An optionally stranded, 0-based, open genomic interval."""
 
     chrom: str = field(compare=True)
     start: int = field(compare=True)
@@ -227,7 +226,7 @@ It makes sense to move this logic into the `Interval` definition, because we wil
 ```python
 @dataclass(order=True)
 class Interval:
-    """A stranded genomic interval."""
+    """An optionally stranded, 0-based, open genomic interval."""
 
     chrom: str = field(compare=True)
     start: int = field(compare=True)
@@ -236,8 +235,8 @@ class Interval:
 
     def __contains__(self, other: Interval) -> bool:
         """Checks if another interval overlaps with self."""
-        starts_in = self.start <= other.start < self.end
-        ends_in = self.start < other.end <= self.end
+        starts_in = self.start <= other.start <= self.end
+        ends_in = self.start <= other.end <= self.end
         same_sign = self.sign == other.sign
         return (starts_in or ends_in) and same_sign
 ```
@@ -317,8 +316,8 @@ def read_in_gene(read, genome):
     for chrom in genome:
         if chrom[0] == read[0]:
             for gene in chrom[2]:
-                starts_in = gene[1][1] <= read[1] < gene[1][2]
-                ends_in = gene[1][1] < read[2] <= gene[1][2]
+                starts_in = gene[1][1] <= read[1] <= gene[1][2]
+                ends_in = gene[1][1] <= read[2] <= gene[1][2]
                 same_sign = gene[1][3] == read[3]
                 if starts_in or ends_in:
                     return True
@@ -345,7 +344,6 @@ In the example below, we define `Interval` as a subclass of `BaseModel` to acces
 Here is the full example rewritten with pydantic:
 
 ```python
-from __future__ import annotations
 from typing import Any, Literal, Optional
 from pydantic import BaseModel, conint, root_validator, NonNegativeInt
 
@@ -354,7 +352,7 @@ pos = conint(ge=0)
 
 
 class Interval(BaseModel):
-    """A stranded genomic interval."""
+    """An optionally stranded, 0-based, open genomic interval."""
 
     chrom: str
     start: pos
@@ -363,8 +361,8 @@ class Interval(BaseModel):
 
     def __contains__(self, other: Interval) -> bool:
         """Checks if another interval overlaps with self."""
-        starts_in = self.start <= other.start < self.end
-        ends_in = self.start < other.end <= self.end
+        starts_in = self.start <= other.start <= self.end
+        ends_in = self.start <= other.end <= self.end
         same_sign = self.sign == other.sign
         return starts_in or ends_in and same_sign
 
