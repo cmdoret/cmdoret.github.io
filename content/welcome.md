@@ -15,4 +15,5 @@ I made this website to share thoughts, programming tips and projects I'm working
 
 ### Technical notes about this website
 
-This site is built with the [Zola](https://www.getzola.org) static site generator with the [Abridge](https://github.com/jieiku/abridge/) theme and uses the dynamic DNS from [afraid.org Free DNS](https://freedns.afraid.org/).
+This site is free and open source software licensed under [GPL-3.0](https://github.com/cmdoret/cmdoret.github.io/blob/main/LICENSE), the source code is available from [GitHub](https://github.com/cmdoret/cmdoret.github.io). It is built with the [Zola](https://www.getzola.org) static site generator with the [Abridge](https://github.com/jieiku/abridge/) theme.
+
