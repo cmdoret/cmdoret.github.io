@@ -2,6 +2,11 @@ set positional-arguments
 set shell := ["bash", "-cue"]
 root_dir := justfile_dir()
 
+# Default recipe to list all recipes.
+[private]
+default:
+  @just --list --no-aliases
+
 # render the website
 build:
   @echo "Building website..."
@@ -21,7 +26,7 @@ deploy: build
   git subtree push --prefix public origin gh-pages
 
 alias dev := nix-develop
-# enters a nix shell with all the tools needed 
+# enter a nix shell with all the tools needed 
 nix-develop *args:
   @echo "Starting nix dev shell..."
   cd {{root_dir}} && \
