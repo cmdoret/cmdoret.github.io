@@ -1,5 +1,5 @@
 +++
-title = "Simplifying research code with modern python features"
+title = "Simplifying Research Code With Modern Python Features"
 date = 2023-01-13
 draft = false
 weight = 1

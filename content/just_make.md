@@ -1,7 +1,7 @@
 +++
-title = "Task automation: just make it easy"
+title = "Task Automation: Just Make it Easy"
 date = 2025-03-14
-draft = true
+draft = false
 weight = 1
 
 [taxonomies]
@@ -12,16 +12,17 @@ toc = true
 keywords = "Programming, Development, Automation"
 +++
 
-When working in a git repository, it is useful to provide recipes to automate frequent tasks, such as building, linting, formatting, testing or benchmarking.
+When working in a git repository, we often use recipes to automate frequent tasks, such as building, linting, formatting, testing or benchmarking.
+
 This provides a written trace of these "recipes" and a way to discover, remember and run the commands easily in the right order.
 
 While this can be achieved with custom shell scripts, this would be error prone and require much boilerplate code.
 
 Instead, there are "command runner" tools that are made for this purpose.
 
-## `make` is a build system
+## Make is a Build System
 
-The majority of projects use `make` as a "command runner", because it is well known and available on most systems.
+The majority of projects use [`make`](https://www.gnu.org/software/make/) as a "command runner", because it is well known and available on most systems.
 
 However, `make` was intended as a build system, not a generic command runner: its purpose is to organize the compilation of source files, and this is reflected by its features:
 
@@ -31,7 +32,7 @@ However, `make` was intended as a build system, not a generic command runner: it
 
 Additionally, some default behaviours get in the way of using `make` as a task runner, for example if a `.PHONY` recipe has the same name as a file or directory (e.g. `test/`), it will refuse to run it.
 
-## `just` use a command runner
+## Just Use a Task Runner
 
 [`just`](just.systems) is only one of many tools that were designed specifically as task runners. Other examples include [task](https://taskfile.dev/) or [doit](https://github.com/pydoit/doit).
 
@@ -44,9 +45,14 @@ In brief, it has saner default than `make` for use as a task runner and provides
 
 The main con of `just`, is that it is likely not available on the system, however it is available on most package registries and can be used as a standalone binary.
 
-Here is a small example showcasing some useful just features:
+## Example
 
-```just
+Here is a small example `justfile` showcasing some useful just features:
+
+```make
+#!/usr/bin/env just
+# ./justfile
+
 set shell := ["bash", "-cue"] # <- enforce specific shell in recipes
 set positional-arguments # <- allow passing positional args
 set dotenv-required # <- source .env, exit if missing
@@ -66,12 +72,12 @@ test *args: install # <- install, then test
   uv run pytest {{args}} # <- all args passed to pytest
 
 # Measure performances
-benchmark model="large" dataset="iris": install # <- named args
+benchmark model="large" dataset="iris": install # <- args with default values
   uv run ./benchmark.py --model {{model}} --dataset {{dataset}}
 
 ```
 
-```shell
+```bash
 ➜ just
 Available recipes:
     benchmark model="large" dataset="iris" # Measure performances
@@ -96,12 +102,12 @@ collected 2 items
       <Function test_bar>
 
 =========================== 2 tests collected in 0.01s ===========================
-➜ just bench model=small
+➜ just bench small
 uv sync
 Resolved 6 packages in 1ms
 Audited 4 packages in 0.02ms
-uv run ./benchmark.py --model model=small --dataset iris
-benchmarking model=small model on iris dataset
+uv run ./benchmark.py --model small --dataset iris
+benchmarking small model on iris dataset
 ```
 
 ## Conclusion
