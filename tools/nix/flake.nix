@@ -6,9 +6,7 @@
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's an working example:
-    nixpkgsStable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgsZola.url = "github:nixos/nixpkgs/194c2aa446b2b059886bb68be15ef6736d5a8c31";
     # Also see the 'stable-packages' overlay at 'overlays/default.nix'.
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -20,7 +18,7 @@
       nixpkgs,
       flake-utils,
       ...
-    }:
+    }@inputs:
     let
       # The function which builds the flake output attrMap.
       defineOutput =
@@ -39,8 +37,7 @@
             just
             nodejs_23
             yamlfmt
-            #(pkgs.callPackage ./zola.nix { })
-            zola
+            inputs.nixpkgsZola.legacyPackages.${system}.zola
             zsh
           ];
 
