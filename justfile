@@ -7,8 +7,10 @@ root_dir := justfile_dir()
 default:
   @just --list --no-aliases
 
+setup:
+  npm install
 # render the website
-build:
+build: setup
   @echo "Building website..."
   cd {{root_dir}} && \
     zola build && \

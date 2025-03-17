@@ -39,6 +39,7 @@
             just
             nodejs_23
             yamlfmt
+            #(pkgs.callPackage ./zola.nix { })
             zola
             zsh
           ];
