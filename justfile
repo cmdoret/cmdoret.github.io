@@ -7,6 +7,10 @@ root_dir := justfile_dir()
 default:
   @just --list --no-aliases
 
+clean:
+  cd {{root_dir}} && \
+    rm -rf public/*
+
 setup:
   npm install
 # render the website
@@ -25,7 +29,10 @@ watch: build
 
 # deploy the website to github pages
 deploy: build
-  git subtree push --prefix public origin gh-pages
+  cd {{root_dir}} && \
+    git add public && \
+    git commit -m 'chore: deploy website' && \
+    git subtree push --prefix public origin gh-pages
 
 alias dev := nix-develop
 # enter a nix shell with all the tools needed 
