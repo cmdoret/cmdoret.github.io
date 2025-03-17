@@ -10,14 +10,12 @@ textarea {
   border: 0;
   border-radius: .25rem;
   font: inherit;
-  line-height: 1.1rem var(--fs);
+  line-height: var(--fs);
   color: var(--f1);
 }
-
 button.del {
   color: var(--cr);
 }
-
 button,
 [type="button" i],
 [type="submit" i],
@@ -32,14 +30,12 @@ button,
   cursor: pointer;
   transition: opacity .25s;
 }
-
 button:hover,
 [type="button" i]:hover,
 [type="submit" i]:hover,
 [type="reset" i]:hover {
   opacity: .75;
 }
-
 button[disabled],
 [type="button" i][disabled],
 [type="submit" i][disabled],
