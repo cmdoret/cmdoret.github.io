@@ -51,7 +51,6 @@ Here is a small example `justfile` showcasing some useful just features:
 
 ```make
 #!/usr/bin/env just
-# ./justfile
 
 set shell := ["bash", "-cue"] # <- enforce specific shell in recipes
 set positional-arguments # <- allow passing positional args
@@ -59,8 +58,8 @@ set dotenv-required # <- source .env, exit if missing
 
 alias bench := benchmark
 
-# default behaviour: show help
-_default: # <- underscore prefix hides it from help
+# default behaviour: show list of recipes
+_default: # <- underscore prefix hides recipe from the list
     @just --list --no-aliases # <- @ hides command from output
 
 # Install dependencies
@@ -76,6 +75,8 @@ benchmark model="large" dataset="iris": install # <- args with default values
   uv run ./benchmark.py --model {{model}} --dataset {{dataset}}
 
 ```
+
+If the above is saved in `./justfile`, we can use `just` as follows:
 
 ```bash
 ➜ just
@@ -102,6 +103,7 @@ collected 2 items
       <Function test_bar>
 
 =========================== 2 tests collected in 0.01s ===========================
+
 ➜ just bench small
 uv sync
 Resolved 6 packages in 1ms
