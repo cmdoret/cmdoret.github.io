@@ -10,3 +10,5 @@ I'm a computational biologist by training, located in Switzerland. During my PhD
 This has lead me to the [Swiss Data Science Center](https://datascience.ch/), where I joined the Open Research Data team as a data science engineer. I now help life science and biomedical researchers and institutions improve their [FAIR data](https://en.wikipedia.org/wiki/FAIR_data) and software engineering practices.
 
 In my spare time, I also like to tinker with open software and hardware. I may occasionally post about it in here.
+
+The code of this website is licensed under [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html), and its content is made available under [CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). Both licenses are distributed along with the [website repository](https://github.com/cmdoret/cmdoret.github.io).
