@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <script defer src="https://cmdoret.net/abridge-bundle.min.js?h=b1b28408b08ac9dc2a63" integrity="sha384-6teVbof0elFiJ8Mli7x6VZkIkaifxKZISi2gvUqAd3H+J7fB32MUsmOSacKAMSRd"></script>
+  <script defer src="https://cmdoret.net/abridge-bundle.min.js?h=aaee4b024d3215b36e73" integrity="sha384-RwSeoVxdypKQBb+yzgobH0SDnA0q1BiDjIk8no8K1QROKzKhqURNgb0u+qszNsuU"></script>
   <meta name="base" content="https://cmdoret.net" />
   <link rel="alternate" type="application/atom+xml" title="Atom/RSS Feed" href="https://cmdoret.net/atom.xml" />
   <meta name="robots" content="index, follow" />
@@ -70,16 +70,16 @@
         <span class="s95"> Cyril Matthey-Doret<span class="hpad"> </span> March 14, 2025<span class="hpad"> </span> [<a href="https://cmdoret.net/categories/programming/">programming</a>] #<a href="https://cmdoret.net/tags/automation/">automation</a>  #<a href="https://cmdoret.net/tags/tools/">tools</a> </span>
 
     <p>When working in a git repository, we often use recipes to automate frequent tasks, such as building, linting, formatting, testing or benchmarking.</p>
-<p>This provides a written trace of these &quot;recipes&quot; and a way to discover, remember and run the commands easily in the right order.</p>
-<p>While this can be achieved with custom shell scripts, this would be error prone and require much boilerplate code.</p>
+<p>This provides a written trace of such &quot;recipes&quot; and a way to discover, remember and run the commands easily in the right order.</p>
+<p>While this can be achieved with custom shell scripts, it would be error prone and require much boilerplate code.</p>
 <p>Instead, there are &quot;command runner&quot; tools that are made for this purpose.</p>
 <h2 id="make-is-a-build-system">Make is a Build System</h2>
-<p>The majority of projects use <a rel="noopener" target="_blank" href="https://www.gnu.org/software/make/"><code>make</code></a> as a &quot;command runner&quot;, because it is well known and available on most systems.</p>
+<p>Most projects use <a rel="noopener" target="_blank" href="https://www.gnu.org/software/make/"><code>make</code></a> as a &quot;command runner&quot;, because it is well known and available on most systems.</p>
 <p>However, <code>make</code> was intended as a build system, not a generic command runner: its purpose is to organize the compilation of source files, and this is reflected by its features:</p>
 <ul>
 <li>recipes are designed around file dependencieiave file Recipes in a &quot;Makefile&quot; are expected to have file inputs and outputs.</li>
 <li>running arbitrary commands require explicitely marking rules with <code>.PHONY</code>.</li>
-<li><code>make</code> does not have a built-in way to pass arguments to recipes.</li>
+<li>no built-in way to pass arguments to recipes.</li>
 </ul>
 <p>Additionally, some default behaviours get in the way of using <code>make</code> as a task runner, for example if a <code>.PHONY</code> recipe has the same name as a file or directory (e.g. <code>test/</code>), it will refuse to run it.</p>
 <h2 id="just-use-a-task-runner">Just Use a Task Runner</h2>
