@@ -14,21 +14,21 @@ keywords = "Programming, Development, Automation"
 
 When working in a git repository, we often use recipes to automate frequent tasks, such as building, linting, formatting, testing or benchmarking.
 
-This provides a written trace of these "recipes" and a way to discover, remember and run the commands easily in the right order.
+This provides a written trace of such "recipes" and a way to discover, remember and run the commands easily in the right order.
 
-While this can be achieved with custom shell scripts, this would be error prone and require much boilerplate code.
+While this can be achieved with custom shell scripts, it would be error prone and require much boilerplate code.
 
 Instead, there are "command runner" tools that are made for this purpose.
 
 ## Make is a Build System
 
-The majority of projects use [`make`](https://www.gnu.org/software/make/) as a "command runner", because it is well known and available on most systems.
+Most projects use [`make`](https://www.gnu.org/software/make/) as a "command runner", because it is well known and available on most systems.
 
 However, `make` was intended as a build system, not a generic command runner: its purpose is to organize the compilation of source files, and this is reflected by its features:
 
 * recipes are designed around file dependencieiave file Recipes in a "Makefile" are expected to have file inputs and outputs.
 * running arbitrary commands require explicitely marking rules with `.PHONY`.
-* `make` does not have a built-in way to pass arguments to recipes.
+* no built-in way to pass arguments to recipes.
 
 Additionally, some default behaviours get in the way of using `make` as a task runner, for example if a `.PHONY` recipe has the same name as a file or directory (e.g. `test/`), it will refuse to run it.
 
