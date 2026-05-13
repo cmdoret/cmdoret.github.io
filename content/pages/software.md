@@ -13,4 +13,8 @@ Below is the list of softwares I developed and/or maintain.
 
 [![koszullab/pareidolia - GitHub](https://gh-card.dev/repos/koszullab/pareidolia.svg)](https://github.com/koszullab/pareidolia) [![cmdoret/dnaglider - GitHub](https://gh-card.dev/repos/cmdoret/dnaglider.svg)](https://github.com/cmdoret/dnaglider)
 
+[![sdsc-ordes/fuzon - GitHub](https://gh-card.dev/repos/sdsc-ordes/fuzon.svg)](https://github.com/sdsc-ordes/fuzon) [![sdsc-ordes/tripsu - GitHub](https://gh-card.dev/repos/sdsc-ordes/tripsu.svg)](https://github.com/sdsc-ordes/tripsu)
+
+[![sdsc-ordes/gimie - GitHub](https://gh-card.dev/repos/sdsc-ordes/gimie.svg)](https://github.com/sdsc-ordes/gimie)
+
 
