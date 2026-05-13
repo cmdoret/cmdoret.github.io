@@ -2,11 +2,13 @@
 title = "Welcome to my website"
 date = 2022-11-02
 draft = false
-weight = 0
+weight = 1
 
 [taxonomies]
 categories = ["Personal"]
 tags = ["Blog"]
+[extra]
+toc = true
 +++
 
 Hi, I'm Cyril and this is my website! I may write about open data, programming, bioinformatics or various tech-related things.
