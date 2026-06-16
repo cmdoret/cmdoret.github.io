@@ -1,4 +1,4 @@
-Sitemap: https://cmdoret.net/sitemap.xml
+Sitemap: https://www.cmdoret.net/sitemap.xml
 User-Agent: *
 Allow: /
-Host: https://cmdoret.net
+Host: https://www.cmdoret.net
