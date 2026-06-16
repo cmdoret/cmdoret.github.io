@@ -1,5 +1,5 @@
 # do NOT include a trailing slash on the base URL for web urls
-base_url = "https://cmdoret.net"
+base_url = "https://www.cmdoret.net"
 #base_url = "/home/jieiku/.dev/abridge/public/" # for locally usable build directly from disk, also set in [extra] section uglyurls = true
 title = "Cyril Matthey-Doret"
 description = "Welcome to my website! I may write about open data, programming, bioinformatics or various tech-related things."

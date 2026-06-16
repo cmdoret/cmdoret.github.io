@@ -1,9 +1,9 @@
-# cmdoret.net
+# www.cmdoret.net
 
 This repository holds the source code to build my personal website.
 The rendered website is hosted on github pages and can be accessed from either of:
 * https://cmdoret.github.io
-* https://cmdoret.net
+* https://www.cmdoret.net
 
 The website is built with [zola](https://www.getzola.org/) and uses the [abridge](https://github.com/Jieiku/abridge) theme, which is included as a submodule in this repo.
 
