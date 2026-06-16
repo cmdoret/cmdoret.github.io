@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>Cyril Matthey-Doret - automation</title>
     <subtitle>Welcome to my website! I may write about open data, programming, bioinformatics or various tech-related things.</subtitle>
-    <link href="https://cmdoret.net/tags/automation/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://cmdoret.net"/>
+    <link href="https://www.cmdoret.net/tags/automation/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://www.cmdoret.net"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2025-03-14T00:00:00+00:00</updated>
-    <id>https://cmdoret.net/tags/automation/atom.xml</id>
+    <id>https://www.cmdoret.net/tags/automation/atom.xml</id>
     <entry xml:lang="en">
         <title>Task Automation: Just Make it Easy</title>
         <published>2025-03-14T00:00:00+00:00</published>
@@ -14,8 +14,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://cmdoret.net/just-make/" type="text/html"/>
-        <id>https://cmdoret.net/just-make/</id>
+        <link rel="alternate" href="https://www.cmdoret.net/just-make/" type="text/html"/>
+        <id>https://www.cmdoret.net/just-make/</id>
         <content type="html">&lt;p&gt;When working in a git repository, we often use recipes to automate frequent tasks, such as building, linting, formatting, testing or benchmarking.&lt;&#x2F;p&gt;
 &lt;p&gt;This provides a written trace of such &amp;quot;recipes&amp;quot; and a way to discover, remember and run the commands easily in the right order.&lt;&#x2F;p&gt;
 &lt;p&gt;While this can be achieved with custom shell scripts, it would be error prone and require much boilerplate code.&lt;&#x2F;p&gt;
@@ -30,7 +30,7 @@
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Additionally, some default behaviours get in the way of using &lt;code&gt;make&lt;&#x2F;code&gt; as a task runner, for example if a &lt;code&gt;.PHONY&lt;&#x2F;code&gt; recipe has the same name as a file or directory (e.g. &lt;code&gt;test&#x2F;&lt;&#x2F;code&gt;), it will refuse to run it.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;just-use-a-task-runner&quot;&gt;Just Use a Task Runner&lt;&#x2F;h2&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;cmdoret.net&#x2F;just-make&#x2F;just.systems&quot;&gt;&lt;code&gt;just&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; is only one of many tools that were designed specifically as task runners. Other examples include &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;taskfile.dev&#x2F;&quot;&gt;task&lt;&#x2F;a&gt; or &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pydoit&#x2F;doit&quot;&gt;doit&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.cmdoret.net&#x2F;just-make&#x2F;just.systems&quot;&gt;&lt;code&gt;just&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; is only one of many tools that were designed specifically as task runners. Other examples include &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;taskfile.dev&#x2F;&quot;&gt;task&lt;&#x2F;a&gt; or &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pydoit&#x2F;doit&quot;&gt;doit&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;In brief, it has saner default than &lt;code&gt;make&lt;&#x2F;code&gt; for use as a task runner and provides useful options which remove the need for glue code:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;print recipe comments as help message&lt;&#x2F;li&gt;

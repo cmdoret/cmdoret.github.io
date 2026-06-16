@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <title>Cyril Matthey-Doret - python</title>
     <subtitle>Welcome to my website! I may write about open data, programming, bioinformatics or various tech-related things.</subtitle>
-    <link href="https://cmdoret.net/tags/python/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://cmdoret.net"/>
+    <link href="https://www.cmdoret.net/tags/python/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://www.cmdoret.net"/>
     <generator uri="https://www.getzola.org/">Zola</generator>
     <updated>2023-01-13T00:00:00+00:00</updated>
-    <id>https://cmdoret.net/tags/python/atom.xml</id>
+    <id>https://www.cmdoret.net/tags/python/atom.xml</id>
     <entry xml:lang="en">
         <title>Simplifying Research Code With Modern Python Features</title>
         <published>2023-01-13T00:00:00+00:00</published>
@@ -14,8 +14,8 @@
         <author>
           <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://cmdoret.net/primitive-obsession/" type="text/html"/>
-        <id>https://cmdoret.net/primitive-obsession/</id>
+        <link rel="alternate" href="https://www.cmdoret.net/primitive-obsession/" type="text/html"/>
+        <id>https://www.cmdoret.net/primitive-obsession/</id>
         <content type="html">&lt;p&gt;Most scientific software is developed by researchers whose main area of expertise is not software engineering, and who may not have much time to dedicate to development. This often results in a tendency to ignore more advanced language features, such as failing to create custom types and instead over-rely on the language&#x27;s built-in types. &lt;&#x2F;p&gt;
 &lt;p&gt;While it is arguably better to avoid over-engineering to keep the code simple and accessible to a wider audience, using more advanced features can also improve readability and maintainability in larger codebases. In such situations, sticking to the built-ins can result in a code smell known as &lt;em&gt;primitive obsession&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;Fortunately, python provides several features to easily take advantage of custom types and interfaces with little overhead. In this post, I&#x27;ll be showcasing a few modern(ish) python features that can help keep your code readable, and save you time in the long term.&lt;&#x2F;p&gt;
